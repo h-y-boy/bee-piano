@@ -9,6 +9,9 @@
     "precommit": "lint-staged",
     "lint": "eslint --ext .js,.vue,.ts src"
   },
+  "lint-staged": {
+    "*.{js,vue,ts}": "eslint --fix"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/electron": "^1.6.12",
