@@ -20,8 +20,6 @@
         "@unocss/transformer-directives": "^66.2.1",
         "@vicons/fluent": "^0.13.0",
         "@vitejs/plugin-vue": "^5.2.4",
-        "@vue/eslint-config-prettier": "^10.2.0",
-        "@vue/eslint-config-typescript": "^14.5.0",
         "electron-builder": "^26.0.12",
         "eslint": "^9.29.0",
         "eslint-plugin-prettier": "^5.5.0",
@@ -466,10 +464,6 @@
     "@vue/devtools-kit": ["@vue/devtools-kit@7.7.6", "https://registry.npmmirror.com/@vue/devtools-kit/-/devtools-kit-7.7.6.tgz", { "dependencies": { "@vue/devtools-shared": "^7.7.6", "birpc": "^2.3.0", "hookable": "^5.5.3", "mitt": "^3.0.1", "perfect-debounce": "^1.0.0", "speakingurl": "^14.0.1", "superjson": "^2.2.2" } }, "sha512-geu7ds7tem2Y7Wz+WgbnbZ6T5eadOvozHZ23Atk/8tksHMFOFylKi1xgGlQlVn0wlkEf4hu+vd5ctj1G4kFtwA=="],
 
     "@vue/devtools-shared": ["@vue/devtools-shared@7.7.6", "https://registry.npmmirror.com/@vue/devtools-shared/-/devtools-shared-7.7.6.tgz", { "dependencies": { "rfdc": "^1.4.1" } }, "sha512-yFEgJZ/WblEsojQQceuyK6FzpFDx4kqrz2ohInxNj5/DnhoX023upTv4OD6lNPLAA5LLkbwPVb10o/7b+Y4FVA=="],
-
-    "@vue/eslint-config-prettier": ["@vue/eslint-config-prettier@10.2.0", "https://registry.npmmirror.com/@vue/eslint-config-prettier/-/eslint-config-prettier-10.2.0.tgz", { "dependencies": { "eslint-config-prettier": "^10.0.1", "eslint-plugin-prettier": "^5.2.2" }, "peerDependencies": { "eslint": ">= 8.21.0", "prettier": ">= 3.0.0" } }, "sha512-GL3YBLwv/+b86yHcNNfPJxOTtVFJ4Mbc9UU3zR+KVoG7SwGTjPT+32fXamscNumElhcpXW3mT0DgzS9w32S7Bw=="],
-
-    "@vue/eslint-config-typescript": ["@vue/eslint-config-typescript@14.5.0", "https://registry.npmmirror.com/@vue/eslint-config-typescript/-/eslint-config-typescript-14.5.0.tgz", { "dependencies": { "@typescript-eslint/utils": "^8.26.0", "fast-glob": "^3.3.3", "typescript-eslint": "^8.26.0", "vue-eslint-parser": "^10.1.1" }, "peerDependencies": { "eslint": "^9.10.0", "eslint-plugin-vue": "^9.28.0 || ^10.0.0", "typescript": ">=4.8.4" }, "optionalPeers": ["typescript"] }, "sha512-5oPOyuwkw++AP5gHDh5YFmST50dPfWOcm3/W7Nbh42IK5O3H74ytWAw0TrCRTaBoD/02khnWXuZf1Bz1xflavQ=="],
 
     "@vue/reactivity": ["@vue/reactivity@3.5.16", "https://registry.npmmirror.com/@vue/reactivity/-/reactivity-3.5.16.tgz", { "dependencies": { "@vue/shared": "3.5.16" } }, "sha512-FG5Q5ee/kxhIm1p2bykPpPwqiUBV3kFySsHEQha5BJvjXdZTUfmya7wP7zC39dFuZAcf/PD5S4Lni55vGLMhvA=="],
 
