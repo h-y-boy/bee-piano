@@ -36,7 +36,6 @@ const bufferLength = analyser.frequencyBinCount
 const dataArray = new Uint8Array(bufferLength)
 
 const tempo = ref(120)
-const tempoTime = computed(() => (60 / tempo.value).toFixed(2))
 
 const canvas$ = useTemplateRef<HTMLCanvasElement>('canvas')
 const keyborad$ = useTemplateRef<InstanceType<typeof KeyBorad>>('keyborad')
@@ -154,19 +153,21 @@ const handleTest = async () => {
     const n = list[times]!
     if (Array.isArray(n.note)) {
       const [n1, n2] = n.note
-      const notes1 = splitNote(n1!)
-      const notes2 = splitNote(n2!)
+      const notes1 = splitNote(n1)
+      const notes2 = splitNote(n2)
       if (!notes1 || !notes2) continue
 
       const [note1, time1] = notes1
       const [note2, time2] = notes2
 
-      const idx1 = keyborad$.value?.keyRefs.findIndex(
-        (r) => r.id === `${note1}-${time1}`
-      )!
-      const idx2 = keyborad$.value?.keyRefs.findIndex(
-        (r) => r.id === `${note2}-${time2}`
-      )!
+      const idx1 =
+        keyborad$.value?.keyRefs.findIndex(
+          (r) => r.id === `${note1}-${time1}`
+        ) || -1
+      const idx2 =
+        keyborad$.value?.keyRefs.findIndex(
+          (r) => r.id === `${note2}-${time2}`
+        ) || -1
 
       // console.log(idx1, idx2, notes1, notes2, n)
       if (idx1 >= 0 && idx2 >= 0) {
@@ -184,9 +185,9 @@ const handleTest = async () => {
       const notes = splitNote(n.note)
       if (!notes) continue
       const [note, time] = notes
-      const idx = keyborad$.value?.keyRefs.findIndex(
-        (r) => r.id === `${note}-${time}`
-      )!
+      const idx =
+        keyborad$.value?.keyRefs.findIndex((r) => r.id === `${note}-${time}`) ||
+        -1
       if (idx >= 0) {
         playNote(note!, +time!)
         keyborad$.value?.keyRefs[idx]?.classList.add('active')
@@ -221,7 +222,7 @@ const draw = () => {
   const barWidth = (canvas$.value!.width / dataArray.length) * WIDTH
   let x = 0
   for (let i = 0; i < dataArray.length / WIDTH; i++) {
-    let barHeight = dataArray[i * WIDTH]!
+    const barHeight = dataArray[i * WIDTH]!
     const [r, g, b] = [
       255 - Math.random() * barHeight,
       Math.random() * barHeight,

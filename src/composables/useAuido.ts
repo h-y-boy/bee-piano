@@ -114,7 +114,7 @@ export const useDetectNote = (
 
   const detect = () => {
     analyser.getFloatTimeDomainData(input) // 填充音频数据
-    const [freq, clarity] = detector.findPitch(input, sampleRate)
+    const [freq] = detector.findPitch(input, sampleRate)
     if (freq > 80 && freq < 1000) {
       const note = getNearestNote(freq)
       currentNote.value = note

@@ -3,7 +3,6 @@ export const splitNote = (note: string) => {
   return match ? [match[1], match[2]] : null
 }
 
-
 //翻转对象的键和值
 export const flipObject = (obj: Record<string, any>) => {
   const flipped: Record<string, any> = {}

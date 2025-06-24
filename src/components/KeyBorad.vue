@@ -10,7 +10,7 @@
         >
           确定
         </NButton>
-        <NButton type="error" secondary @click="handleCancel" size="tiny">
+        <NButton type="error" secondary size="tiny" @click="handleCancel">
           取消
         </NButton>
       </div>
@@ -27,15 +27,15 @@
     <template v-for="(times, idx) in 5" :key="times">
       <div
         v-for="note in whiteKeys"
-        :key="note"
         :id="`${note}-${idx + base}`"
+        :ref="refs.set"
+        :key="note"
         class="white-key"
         :class="{
           'pointer-events-none': editKeyBorad,
         }"
         @mousedown="play(note, base + idx)"
         @mouseup="release(note, base + idx)"
-        :ref="refs.set"
       >
         <div class="mb-2">
           <input
@@ -52,16 +52,16 @@
       </div>
       <div
         v-for="note in blackKeys"
-        :style="{ left: calLeft(note, idx) }"
-        @mousedown="play(note, base + idx)"
-        @mouseup="release(note, base + idx)"
         :id="`${note}-${idx + base}`"
         :key="note"
+        :ref="refs.set"
         class="black-key"
         :class="{
           'pointer-events-none': editKeyBorad,
         }"
-        :ref="refs.set"
+        :style="{ left: calLeft(note, idx) }"
+        @mousedown="play(note, base + idx)"
+        @mouseup="release(note, base + idx)"
       >
         <div class="mb-2">{{ noteProxyKey[`${note}${idx + base}`] }}</div>
         <span class="note-label">{{ note }}</span>
@@ -137,8 +137,9 @@ useEventListener('keydown', (e) => {
   }
 })
 
-const handleSwitchKey = (e: InputEvent, note: string) => {
-  noteProxyKey.value[note] = e.data
+const handleSwitchKey = (e: Event, note: string) => {
+  const { data } = e as InputEvent
+  noteProxyKey.value[note] = data
 }
 
 const handleConfirm = () => {
