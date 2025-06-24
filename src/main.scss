@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  background: linear-gradient(
+    145deg,
+    #e5eff7 0%,
+    #d0f0eb 30%,
+    #c1e0f9 60%,
+    #e6d6f4 85%,
+    #f8eecf 100%
+  );
+  background-size: cover;
+  background-attachment: fixed;
+  filter: brightness(1.05) contrast(1.02);
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.n-icon {
+  cursor: pointer;
+}
