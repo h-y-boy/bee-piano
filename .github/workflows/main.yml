@@ -1,0 +1,39 @@
+name: CI/CD
+
+on:
+  push:
+    branches: ['test', 'master']
+  pull_request:
+    branches: ['test', 'master']
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.11.1'
+
+      - name: Install dependencies
+        run: npm i bun@1.2.17 -g && bun install
+
+      - name: Run TypeScript check
+        run: npx tsc --noEmit
+
+      - name: Run tests (Test environment)
+        if: github.ref == 'refs/heads/test' # 仅在 test 分支执行测试
+        run: bun test
+
+      - name: Build project (Production environment)
+        if: github.ref == 'refs/heads/main' # 仅在 main 分支执行构建
+        run: bun run build
+
+      # - name: Deploy to production
+      #   if: github.ref == 'refs/heads/main'  # 仅在 main 分支执行部署
+      #   # 这里需要替换为实际的部署命令，例如使用 GitHub Pages 或其他云服务
+      #   run: |
+      #     echo "Deploying to production..."
