@@ -16,7 +16,7 @@ function createWindow() {
     win.loadURL(process.env.VITE_DEV_SERVER_URL)
   } else {
     // 生产环境加载打包后的 HTML
-    win.loadFile('dist/renderer/index.html')
+    win.loadFile('dist/web/index.html')
   }
 }
 

@@ -1,10 +1,15 @@
 {
   "name": "bee-piano",
+  "version": "0.0.1",
+  "author": {
+    "name": "bee-piano"
+  },
+  "description": "基于vue3的电子琴",
   "private": true,
   "main": "dist/electron/main.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && electron-builder",
+    "build": "vite build && electron-builder --win --x64",
     "prepare": "husky",
     "precommit": "lint-staged",
     "lint": "eslint --ext .js,.vue,.ts src"
@@ -12,12 +17,16 @@
   "lint-staged": {
     "*.{js,vue,ts}": "eslint --fix"
   },
+  "overrides": {
+    "brace-expansion": "2.0.1"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/electron": "^1.6.12",
     "@unocss/transformer-directives": "^66.2.1",
     "@vicons/fluent": "^0.13.0",
     "@vitejs/plugin-vue": "^5.2.4",
+    "electron": "^37.2.0",
     "electron-builder": "^26.0.12",
     "eslint": "^9.29.0",
     "eslint-plugin-prettier": "^5.5.0",
@@ -39,12 +48,21 @@
   "dependencies": {
     "@vue/compiler-sfc": "^3.5.16",
     "@vueuse/core": "^13.3.0",
-    "electron": "^36.4.0",
     "pitchy": "^4.1.0",
     "tone": "^15.1.22",
     "tonejs-instrument-piano-mp3": "^1.1.2",
     "unplugin-auto-import": "^19.3.0",
     "vue": "^3.5.16",
     "vue-router": "^4.5.1"
+  },
+  "build": {
+    "productName": "bee-piano",
+    "appId": "com.example.bee-piano",
+    "files": [
+      "dist/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    }
   }
 }
