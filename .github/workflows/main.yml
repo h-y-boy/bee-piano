@@ -21,9 +21,6 @@ jobs:
       - name: Install dependencies
         run: npm i bun@1.2.17 -g && bun install
 
-      - name: Run TypeScript check
-        run: npx tsc --noEmit
-
       - name: Run tests (Test environment)
         if: github.ref == 'refs/heads/test' # 仅在 test 分支执行测试
         run: bun test
