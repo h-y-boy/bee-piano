@@ -35,6 +35,12 @@ jobs:
         if: github.ref == 'refs/heads/master' # 仅在 main 分支执行构建
         run: bun run build
 
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }} # 使用自动生成的 GITHUB_TOKEN
+          publish_dir: ./dist # 构建产物目录
+          destination_dir: ${{ github.ref_name }}
       # - name: Deploy to production
       #   if: github.ref == 'refs/heads/main'  # 仅在 main 分支执行部署
       #   # 这里需要替换为实际的部署命令，例如使用 GitHub Pages 或其他云服务
