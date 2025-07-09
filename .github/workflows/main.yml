@@ -2,9 +2,13 @@ name: CI/CD
 
 on:
   push:
-    branches: ['test', 'master']
+    branches-ignore:
+      - 'master'
+    tags:
+      - 'v*.*.*'
   pull_request:
-    branches: ['test', 'master']
+    branches-ignore:
+      - 'master'
   workflow_dispatch:
     inputs:
       action:
@@ -27,17 +31,30 @@ jobs:
       - name: Install dependencies
         run: npm i bun@1.2.17 -g && bun install
 
-      - name: Run tests (Test environment)
-        if: github.ref == 'refs/heads/test' # 仅在 test 分支执行测试
-        run: bun test
+      - name: Get version from package.json
+        id: version
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
-      - name: Build project (Production environment)
-        if: github.ref == 'refs/heads/master' # 仅在 main 分支执行构建
+      - name: Build project
         run: bun run build
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - name: Deploy to GitHub Release
+      - name: Release for master branch
+        if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: Release v${{ steps.version.outputs.version }}
+
+      - name: Release for other branches
+        if: github.ref != 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Pre-Release ${{ github.ref_name }}
+          prerelease: true
